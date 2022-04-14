@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex-container">
+    <div class="flex-child results">
+        {% if item %}
+        <p>
+            Cheapest listings for {{ item }} are available on:<br />
+            {% for realm in min_listing['realms'] %}
+            {{ realm }}<br />
+            {% endfor %}
+            Price per unit is {{ min_listing['price']/100 }} gold.<br />
+            <img src={{ item_img }} alt="item icon" class="item-icon" />
+        </p>
+        {% else %}
+        <p> There was an issue selecting your item. </p>
+        {% endif %}
+    </div>
+
+
+    <div class="flex-child img">
+        {% if img %}
+        <img src={{ img }} alt="character" class="character-info-image" />
+        {% else %}
+        <p> This character does not exist </p>
+        {% endif %}
+    </div>
+</div>
+<form action="{{ url_for('index') }}" method="GET">
+    <input type="submit" value="Search for another item" class="button-success">
+</form>
+{% endblock %}

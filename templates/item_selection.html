@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content-area-tool" id="area">
+    <form action="{{ url_for('results') }}" method="post">
+        <label for="charName">
+            Your character's name:
+        </label>
+        <br />
+        <input type="text" id="charName" name="charName" value="{{ charName }}" class="input-text-area readonly">
+        <br />
+        <label for="server">
+            Your character's server:
+        </label>
+        <br />
+        <input type="text" id="realm" name="realm" value="{{ realm }}" class="input-text-area readonly">
+        <br />
+        <label for="chosen_item">
+            Choose your item from the list below:
+        </label>
+        <br />
+        <select class="item_list" name="item">
+            {% for item in item_list %}
+            <option value="{{ item }}">
+                {{ item }}
+            </option>
+            {% endfor %}
+        </select>
+        <br />
+        <input type="submit" value="Get in!" id="get-in" class="button-success">
+        <img src="{{ url_for('static', filename = 'img/loading.gif')}}" class="spinner" />
+    </form>
+
+    <!--{%if img%}
+    <img src={{ img }} alt="character" class="character-info-image" />
+    {%else%}
+    <p> This character does not exist </p>
+    {%endif%}-->
+</div>
+
+{% endblock %}

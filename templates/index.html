@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="/select-item" method="post">
+        <label for="charName">
+            Your character's name:
+        </label>
+        <br />
+        <input type="text" id="charName" name="charName" value="kolthas" class="input-text-area">
+        <br />
+        <label for="server">
+            Your character's server:
+        </label>
+        <br />
+        <select class="realm_list" name="server">
+            {% for realm in realms %}
+            <option value="{{ realm }}">
+                {{ realm }}
+            </option>
+            {% endfor %}
+        </select>
+        <br />
+        <label for="item">
+            What item are you looking for?
+        </label>
+        <br />
+        <input type="text" id="item" name="item" value="linen cloth" class="input-text-area">
+        <br />
+        <input type="submit" value="Get in!" id="get-in" class="button-success">
+    </form>
+{% endblock %}
